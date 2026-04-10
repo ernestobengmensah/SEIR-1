@@ -1,0 +1,6 @@
+Option 1 — Best practice (local dev)
+
+Use Application Default Credentials (ADC):
+
+    gcloud auth application-default login
+

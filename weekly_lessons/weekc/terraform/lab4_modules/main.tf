@@ -59,3 +59,18 @@ module "postgres" {
   db_user     = "chewie"
   db_password = "supersecret123"
 }
+
+
+module "mig" {
+  source = "./modules/mig"
+
+  name       = "${local.prefix}-${var.environment}-web"
+  zone       = var.zone
+  network    = module.vpc.network_id
+  subnetwork = module.vpc.subnet_id
+
+  db_host     = module.postgres.private_ip
+  db_name     = "chewbacca"
+  db_user     = "chewie"
+  db_password = "supersecret123"
+}

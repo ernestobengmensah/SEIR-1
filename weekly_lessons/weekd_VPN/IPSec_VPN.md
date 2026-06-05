@@ -81,7 +81,7 @@ Sensitive traffic stays protected:
 
 Applications behave as if remote networks are local.
 
-Students LOVE this moment:
+You will LOVE this moment:
 
 “Wait… my VM in GCP can ping on-prem?”
 
@@ -171,13 +171,9 @@ Phase 1 Negotiates
 
 Phase 2 — IPSec SA Establishment
 
-Goal:
+Goal: Establish encrypted data tunnel
 
-establish encrypted data tunnel
-
-Negotiates:
-
-actual encrypted traffic parameters
+Negotiates: Actual encrypted traffic parameters
 Phase 2 Negotiates
 
 | Parameter      | Example  |
@@ -207,29 +203,26 @@ Example:
 
 Step 2 — IKE Phase 1 Begins
 
-Using:
-
-UDP 500
+Using: UDP 500
 
 Peers negotiate:
 
-crypto algorithms
-hashing
-DH group
-authentication method
+    crypto algorithms
+    hashing
+    DH group
+    authentication method
+
+
 Step 3 — Authentication
 
 Usually:
 
 Pre-Shared Key (PSK)
 
-Peers verify:
+Peers verify: “Do we both know the same secret?”
 
-“Do we both know the same secret?”
+If not: Tunnel fails immediately
 
-If not:
-
-tunnel fails immediately
 Step 4 — Secure Management Tunnel Established
 
 IKE SA created.
@@ -240,23 +233,20 @@ Step 5 — Phase 2 Negotiation
 
 Peers negotiate:
 
-ESP settings
-encryption
-integrity
-PFS
+    ESP settings
+    encryption
+    integrity
+    PFS
+
 Step 6 — IPSec Tunnel Established
 
 Encrypted traffic now flows.
 
-Where BGP Fits
-
-This is the “fun” part tonight 😄
+Where BGP Fits---> This is the “fun” part tonight 😄
 
 Static Routing VPN
 
-Old style:
-
-manually define routes
+Old style: manually define routes
 
 Painful at scale.
 
@@ -284,22 +274,22 @@ Why BGP Over VPN?
 
 
 
-
 In GCP Specifically
 
 Google Cloud Cloud VPN often uses:
 
-Cloud Router
-BGP ASN
-dynamic route advertisement
+    Cloud Router
+    BGP ASN
+    dynamic route advertisement
 
 Typical lab:
 
-Tunnel A
-Tunnel B
-BGP peers
-ASN exchange
-learned prefixes
+    Tunnel A
+    Tunnel B
+    BGP peers
+    ASN exchange
+    learned prefixes
+    
 Pre-Shared Key (PSK)
 
 The PSK is:
@@ -311,9 +301,8 @@ Example:
 
 LizzosSuperSecretVPNKey2026!
 
-If mismatched:
+If mismatched:--> Phase 1 fails
 
-Phase 1 fails
 PSK Best Practices
 
 | Good Practice             | Why                    |
@@ -323,8 +312,6 @@ PSK Best Practices
 | Avoid dictionary words    | Prevent guessing       |
 | Store securely            | Treat like credentials |
 | Different keys per tunnel | Limit blast radius     |
-
-
 
 
 Common  Failure Points 😄
@@ -349,9 +336,7 @@ When VPN peers are behind NAT:
 
 IPSec struggles because ESP is not port-based
 
-Solution:
-
-encapsulate ESP inside UDP 4500
+Solution: encapsulate ESP inside UDP 4500
 
 This is:
 

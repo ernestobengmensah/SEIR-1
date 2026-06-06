@@ -101,7 +101,7 @@ Here are the important RFCs students should recognize.
 | RFC 3947 | NAT Traversal Negotiation            |
 | RFC 3948 | UDP Encapsulation for ESP            |
 | RFC 4271 | BGP (commonly used over VPNs)        |
-
+| RFC 6071 | IPSec        |
 
 
 Core IPSec Components
